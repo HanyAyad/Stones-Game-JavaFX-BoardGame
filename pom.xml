@@ -3,15 +3,15 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId><!-- TODO: the groupId of your project (e.g., hu.unideb.inf) --></groupId>
-    <artifactId><!-- TODO: the artifactId of your project --></artifactId>
+    <groupId>hu.unideb.inf</groupId>
+    <artifactId>StoneBoardGame</artifactId>
     <version>1.0</version>
-    <description><!-- TODO: a short description of your project --></description>
+    <description> A game board consisting of 3x3 cells, each of which can contain a piece of stone, and a set of colored (red, yellow, and green) stones. The board is initially empty. Players move in turn. The goal of the game is to have three stones of the same color in a row, column, or diagonal. The player who achieves this with his or her move wins the game.</description>
     <developers>
         <developer>
-            <id><!-- TODO: your ID --></id>
-            <name><!-- TODO: your name --></name>
-            <email><!-- TODO: your email address --></email>
+            <id>HLU4JY</id>
+            <name>Eskandar Hany Ayad Boshra Ayad</name>
+            <email>hanyayad71@gmail.com</email>
             <organization>Faculty of Informatics, University of Debrecen</organization>
             <organizationUrl>https://www.inf.unideb.hu/</organizationUrl>
         </developer>
