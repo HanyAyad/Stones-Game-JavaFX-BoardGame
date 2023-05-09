@@ -1,0 +1,61 @@
+/* Set the background color */
+AnchorPane {
+    -fx-background-color: #1f1f1f;
+}
+
+/* Set the font color for labels */
+Label {
+    -fx-text-fill: #ffffff;
+}
+
+/* Set the font color for text fields */
+TextField {
+    -fx-text-fill: black;
+}
+
+/* Set the background color and font color for the button */
+.button {
+  -fx-background-color: #2c3e50;
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14px;
+}
+
+/* Set button hover styles */
+.button:hover {
+  -fx-background-color: #34495e;
+  -fx-text-fill: #c8d6e5;
+}
+
+
+/* Change the font and font color for the "STONES GAME" label */
+Label[text="STONES GAME"] {
+    -fx-font-family: "Bank Gothic Medium BT";
+    -fx-font-size: 32px;
+    -fx-text-fill: #ffffff;
+}
+
+/* Change the font and font color for the "Please Enter Players Names" label */
+Label[text="Please Enter Players Names"] {
+    -fx-font-family: "Bank Gothic Medium BT";
+    -fx-font-size: 22px;
+    -fx-text-fill: #ffffff;
+}
+
+/* Change the font and font color for the "Player 1" and "Player 2" labels */
+Label[text="Player 1"], Label[text="Player 2"] {
+    -fx-font-family: "Bank Gothic Medium BT";
+    -fx-font-size: 20px;
+    -fx-text-fill: #ffffff;
+}
+
+/* Change the font and font color for the text fields */
+TextField {
+    -fx-font-family: "Bank Gothic Medium BT";
+    -fx-font-size: 14px;
+}
+
+/* Change the font and font color for the button text */
+Button {
+    -fx-font-family: "Bank Gothic Medium BT";
+    -fx-font-size: 14px;
+}

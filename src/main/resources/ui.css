@@ -1,0 +1,61 @@
+/* Set background color of the scene */
+.root {
+  -fx-background-color: #212121;
+}
+
+/* Set text color of the label */
+.label {
+  -fx-text-fill: #FFF;
+}
+
+/* Set font for the label */
+.label {
+  -fx-font-family: "Bank Gothic Medium BT";
+  -fx-font-size: 34px;
+}
+
+/* Set button styles */
+.button {
+  -fx-background-color: #1C1C1C;
+  -fx-text-fill: #FFF;
+  -fx-font-family: "Bank Gothic Medium BT";
+  -fx-font-size: 20px;
+  -fx-border-color: #FFF;
+  -fx-border-width: 2px;
+}
+
+/* Set button hover effect */
+.button:hover {
+  -fx-background-color: #FFF;
+  -fx-text-fill: #1C1C1C;
+}
+
+/* Set board game grid style */
+#board {
+  -fx-background-color: #1C1C1C;
+  -fx-padding: 10px;
+}
+
+/* Set grid cell style */
+.square {
+  -fx-background-color: transparent;
+  -fx-border-color: white;
+  -fx-border-width: 2px;
+  -fx-border-radius: 5px;
+}
+
+/* Set grid cell hover effect */
+.square:hover {
+  -fx-background-color: #333;
+  -fx-text-fill: #1C1C1C;
+}
+
+/* Set selected grid cell style */
+.square.selected {
+  -fx-background-color: #1C1C1C;
+  -fx-text-fill: #FFF;
+}
+
+
+
+
