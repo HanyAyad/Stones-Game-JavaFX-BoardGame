@@ -9,6 +9,11 @@ public class BoardGameModel {
 
     public ReadOnlyObjectWrapper<Square>[][] board = new ReadOnlyObjectWrapper[BOARD_SIZE][BOARD_SIZE];
 
+    private Player currentPlayer = Player.PLAYER1;
+    private boolean gameOver = false;
+    private Player winner = null;
+
+
     public BoardGameModel() {
         for (var i = 0; i < BOARD_SIZE; i++) {
             for (var j = 0; j < BOARD_SIZE; j++) {
@@ -26,7 +31,7 @@ public class BoardGameModel {
     }
 
     public void move(int i, int j) {
-        if (board[i][j].get() != Square.GREEN) {
+        if (!gameOver && board[i][j].get() != Square.GREEN) {
             board[i][j].set(
                     switch (board[i][j].get()) {
                         case NONE -> Square.RED;
@@ -35,8 +40,25 @@ public class BoardGameModel {
                         case GREEN -> Square.NONE;
                     }
             );
-        }
+            checkWinner();
+            switchPlayers();}
 
+    }
+    private void switchPlayers() {
+        currentPlayer = currentPlayer == Player.PLAYER1 ? Player.PLAYER2 : Player.PLAYER1;
+    }
+
+    private void checkWinner() {
+        for (int i = 0; i < BoardGameModel.BOARD_SIZE; i++) {
+            if (checkRow(i) || checkColumn(i)) {
+            winner = currentPlayer;
+            gameOver = true;
+        }
+    }
+        if (checkDiagonal()){
+            winner = currentPlayer;
+            gameOver = true;
+        }
     }
 
     public String toString() {
@@ -97,6 +119,25 @@ public class BoardGameModel {
         }
         return false;
     }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public Player getWinner() {
+        return winner;
+    }
+
+    public void resetGame(){
+        currentPlayer=Player.PLAYER1;
+        gameOver=false;
+        winner=null;
+    }
+
 
 
 }
