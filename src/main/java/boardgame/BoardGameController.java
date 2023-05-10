@@ -1,6 +1,7 @@
 package boardgame;
 
 import boardgame.model.BoardGameModel;
+import boardgame.model.Player;
 import boardgame.model.Square;
 import javafx.beans.binding.ObjectBinding;
 import javafx.fxml.FXML;
@@ -26,9 +27,6 @@ public class BoardGameController {
 
     public int turn=0;
 
-    //Unmaintainable values
-    public int player1Wins=0;
-    public int player2Wins=0;
 
     @FXML
     private void initialize() {
@@ -68,46 +66,16 @@ public class BoardGameController {
     }
 
      public void checkWinner() {
-        for (int i = 0; i < BoardGameModel.BOARD_SIZE; i++) {
-            if (model.checkRow(i) || model.checkColumn(i)) {
-                if(turn%2!=0) {
-                        System.out.printf("%s wins!%n",BoardGameNamesController.player1Name);
-                        leaderBoardList.getItems().add(BoardGameNamesController.player1Name+" wins");
-                        player1Wins++;
-
-                    }
-                if(turn%2==0) {
-                    System.out.printf("%s wins!%n",BoardGameNamesController.player2Name);
-                    leaderBoardList.getItems().add(BoardGameNamesController.player2Name+" wins");
-                    player2Wins++;
-                }
-                    board.setDisable(true);
-
-                System.out.printf("%s has %d wins %n",BoardGameNamesController.player1Name, player1Wins);
-                System.out.printf("%s has %d wins %n",BoardGameNamesController.player2Name, player2Wins);
-                    return;
-
-            }
-        }
-        if (model.checkDiagonal()) {
-            if(turn%2!=0) {
-                System.out.printf("%s wins!%n",BoardGameNamesController.player1Name);
-                leaderBoardList.getItems().add(BoardGameNamesController.player1Name+" wins");
-                player1Wins++;
-            }
-            if(turn%2==0) {
-                System.out.printf("%s wins!%n",BoardGameNamesController.player2Name);
-                leaderBoardList.getItems().add(BoardGameNamesController.player2Name+" wins");
-                player2Wins++;
-            }
-            System.out.printf("%s has %d wins %n",BoardGameNamesController.player1Name, player1Wins);
-            System.out.printf("%s has %d wins %n",BoardGameNamesController.player2Name, player2Wins);
-            board.setDisable(true);
-            return;
-        }
-        // System.out.println("Done"); //For Debugging
+         if (model.isGameOver()) {
+             if (model.getWinner() != null) {
+                 String winnerName = model.getWinner() == Player.PLAYER1 ? BoardGameNamesController.player1Name : BoardGameNamesController.player2Name;
+                 System.out.printf("%s wins!%n", winnerName);
+                 leaderBoardList.getItems().add(winnerName + " wins");
+                 board.setDisable(true);
+                 // System.out.println("Done"); //For Debugging
+             }
+         }
     }
-
 
 
     @FXML
@@ -116,21 +84,19 @@ public class BoardGameController {
         var square = (StackPane) event.getSource();
         var row = GridPane.getRowIndex(square);
         var col = GridPane.getColumnIndex(square);
+        String currPlayer= model.getCurrentPlayer()==Player.PLAYER1 ? BoardGameNamesController.player1Name : BoardGameNamesController.player2Name;
         if (model.squareProperty(row, col).get()!= Square.GREEN) {
-            if(turn%2==0) {
-                System.out.printf("%s clicked on square (%d,%d)%n", BoardGameNamesController.player1Name,row, col);
-            }
-            if(turn%2!=0){
-                System.out.printf("%s clicked on square (%d,%d)%n", BoardGameNamesController.player2Name,row, col);
-            }
+
+            System.out.printf("%s clicked on square (%d,%d)%n", currPlayer,row, col);
 
             model.move(row, col);
             turn++;
+            checkWinner();
         }
         else {
             System.out.println("Can't place other stones on top of green!");
         }
-        checkWinner();
+
 
     }
 
@@ -149,8 +115,9 @@ public class BoardGameController {
                 model.board[i][j].set(Square.NONE);
             }
         }
-        board.setDisable(false);
         turn=0;
+        model.resetGame();
+        board.setDisable(false);
         System.out.println("Game Reset!");
     }
 
