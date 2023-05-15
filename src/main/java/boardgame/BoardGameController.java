@@ -37,6 +37,8 @@ public class BoardGameController {
                 board.add(square, j, i);
             }
         }
+
+
     }
 
     private StackPane createSquare(int i, int j) {
@@ -69,8 +71,11 @@ public class BoardGameController {
          if (model.isGameOver()) {
              if (model.getWinner() != null) {
                  String winnerName = model.getWinner() == Player.PLAYER1 ? BoardGameNamesController.player1Name : BoardGameNamesController.player2Name;
+                 model.setWinnerName(winnerName);
                  System.out.printf("%s wins!%n", winnerName);
+
                  leaderBoardList.getItems().add(winnerName + " wins");
+
                  board.setDisable(true);
                  // System.out.println("Done"); //For Debugging
              }
@@ -105,6 +110,7 @@ public class BoardGameController {
         if (board.isDisabled()) {
             board.setDisable(false);
             System.out.println("Game Started!");
+            model.setPlayerNames(BoardGameNamesController.player1Name,BoardGameNamesController.player2Name);
         }
     }
 
