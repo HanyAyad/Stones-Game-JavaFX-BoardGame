@@ -124,7 +124,7 @@ public class BoardGameController {
 
     @FXML
     private void handlePlayButton(MouseEvent event) {
-        if (board.isDisabled()) {
+        if (board.isDisabled() && !model.isGameOver()) {
             board.setDisable(false);
             Logger.info("Game Started!");
             model.setPlayerNames(BoardGameNamesController.player1Name,BoardGameNamesController.player2Name);
