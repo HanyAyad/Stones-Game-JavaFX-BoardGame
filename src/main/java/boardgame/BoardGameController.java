@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import org.tinylog.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +77,7 @@ public class BoardGameController {
              if (model.getWinner() != null) {
                  String winnerName = model.getWinner() == Player.PLAYER1 ? BoardGameNamesController.player1Name : BoardGameNamesController.player2Name;
                  model.setWinnerName(winnerName);
-                 System.out.printf("%s wins!%n", winnerName);
+                 Logger.info("{} wins!", winnerName);
 
                  board.setDisable(true);
                  // System.out.println("Done"); //For Debugging
@@ -108,14 +109,14 @@ public class BoardGameController {
         String currPlayer= model.getCurrentPlayer()==Player.PLAYER1 ? BoardGameNamesController.player1Name : BoardGameNamesController.player2Name;
         if (model.squareProperty(row, col).get()!= Square.GREEN) {
 
-            System.out.printf("%s clicked on square (%d,%d)%n", currPlayer,row, col);
+            Logger.info("{} Click on square ({},{})", currPlayer ,row, col);
 
             model.move(row, col);
             turn++;
             checkWinner();
         }
         else {
-            System.out.println("Can't place other stones on top of green!");
+            Logger.warn("Can't place other stones on top of green!");
         }
 
 
@@ -125,7 +126,7 @@ public class BoardGameController {
     private void handlePlayButton(MouseEvent event) {
         if (board.isDisabled()) {
             board.setDisable(false);
-            System.out.println("Game Started!");
+            Logger.info("Game Started!");
             model.setPlayerNames(BoardGameNamesController.player1Name,BoardGameNamesController.player2Name);
         }
         updateLeaderboard();
@@ -143,7 +144,7 @@ public class BoardGameController {
         model.resetGame();
         board.setDisable(false);
         updateLeaderboard();
-        System.out.println("Game Reset!");
+        Logger.info("Game Reset!");
     }
 
 
