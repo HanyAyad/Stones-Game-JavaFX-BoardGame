@@ -5,10 +5,37 @@ The objective of the game is to have three stones of the same color in a row, co
 
 ## Rules
 - The game is played with two players.
+
+![1](https://github.com/INBPA0420L/homework-project-HanyAyad/assets/52006612/ff925616-b9eb-4e0b-b5d7-9d134d766e17)
+
+
 - The board is initially empty.
+
+![2](https://github.com/INBPA0420L/homework-project-HanyAyad/assets/52006612/8fb30d26-e255-4ff9-abb9-4f45f12dd951)
+
+
 - Players take turns placing stones onto the board.
 - The stones come in three colors: red, yellow, and green.
+
+![4](https://github.com/INBPA0420L/homework-project-HanyAyad/assets/52006612/747cb742-c730-4359-b5a5-e5dbae91133e)
+
+
 - The first player places a red stone onto an empty cell.
+
+![3](https://github.com/INBPA0420L/homework-project-HanyAyad/assets/52006612/11d27c7f-8f12-488e-940c-81df57dd20c3)
+
+
 - On turns, players can replace a red stone with a yellow stone or a yellow stone with a green stone.
+
+![5](https://github.com/INBPA0420L/homework-project-HanyAyad/assets/52006612/52e6a96d-8981-4ba8-bdd0-33a1ddc4db57)
+
+
 - The game ends when a player has three stones of the same color in a row, column, or diagonal.
 - The player who makes the winning move wins the game.
+
+![6](https://github.com/INBPA0420L/homework-project-HanyAyad/assets/52006612/7f820dca-8489-4c06-a1a9-28360195fd92)
+
+
+- After the game ends, the leaderboard is updated with the Top 5 players based on their wins count.
+
+![7](https://github.com/INBPA0420L/homework-project-HanyAyad/assets/52006612/5b67dc23-6f1c-45f2-ad53-1332b5074db2)
