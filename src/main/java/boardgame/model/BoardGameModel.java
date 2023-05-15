@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class BoardGameModel {
 
@@ -199,6 +201,22 @@ public class BoardGameModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Map<String, Long> getPlayerWins() {
+        ObjectMapper mapper = new ObjectMapper();
+        File file = new File("game_results.json");
+
+        List<GameResults> gameResultsList = new ArrayList<>();
+        if (file.exists()) {
+            try {
+                gameResultsList = mapper.readValue(file, new TypeReference<List<GameResults>>() {});
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return gameResultsList.stream().collect(Collectors.groupingBy(GameResults::getWinnerName, Collectors.counting()));
     }
 
 
