@@ -1,21 +1,21 @@
 package boardgame.model;
 
-import java.time.LocalDateTime;
+
 
 public class GameResults {
 
-    private LocalDateTime gameStartTime;
+    private String gameStartTime;
     private String player1Name;
     private String player2Name;
-    private int player1Turns;
-    private int player2Turns;
+    private int player1Turns=0;
+    private int player2Turns=0;
     private String winnerName;
 
-    public LocalDateTime getGameStartTime() {
+    public String getGameStartTime() {
         return gameStartTime;
     }
 
-    public void setGameStartTime(LocalDateTime gameStartTime) {
+    public void setGameStartTime(String gameStartTime) {
         this.gameStartTime = gameStartTime;
     }
 
