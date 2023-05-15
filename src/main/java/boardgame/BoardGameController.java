@@ -13,6 +13,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class BoardGameController {
 
     @FXML
@@ -74,13 +78,25 @@ public class BoardGameController {
                  model.setWinnerName(winnerName);
                  System.out.printf("%s wins!%n", winnerName);
 
-                 leaderBoardList.getItems().add(winnerName + " wins");
-
                  board.setDisable(true);
                  // System.out.println("Done"); //For Debugging
              }
          }
     }
+
+    public void updateLeaderboard() {
+        Map<String, Long> playerWins = model.getPlayerWins();
+        List<Map.Entry<String, Long>> sortedEntries = new ArrayList<>(playerWins.entrySet());
+        sortedEntries.sort(Map.Entry.<String, Long>comparingByValue().reversed());
+
+        leaderBoardList.getItems().clear();
+
+        for (int i = 0; i < Math.min(5, sortedEntries.size()); i++) {
+            Map.Entry<String, Long> entry = sortedEntries.get(i);
+            leaderBoardList.getItems().add(entry.getKey() + ": " + entry.getValue() + " wins");
+        }
+    }
+
 
 
     @FXML
@@ -112,6 +128,8 @@ public class BoardGameController {
             System.out.println("Game Started!");
             model.setPlayerNames(BoardGameNamesController.player1Name,BoardGameNamesController.player2Name);
         }
+        updateLeaderboard();
+
     }
 
     @FXML
@@ -124,6 +142,7 @@ public class BoardGameController {
         turn=0;
         model.resetGame();
         board.setDisable(false);
+        updateLeaderboard();
         System.out.println("Game Reset!");
     }
 
