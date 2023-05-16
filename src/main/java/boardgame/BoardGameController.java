@@ -5,6 +5,7 @@ import boardgame.model.Player;
 import boardgame.model.Square;
 import javafx.beans.binding.ObjectBinding;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -77,6 +78,11 @@ public class BoardGameController {
              if (model.getWinner() != null) {
                  String winnerName = model.getWinner() == Player.PLAYER1 ? BoardGameNamesController.player1Name : BoardGameNamesController.player2Name;
                  model.setWinnerName(winnerName);
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                 alert.setTitle("Winner");
+                 alert.setHeaderText(null);
+                 alert.setContentText(String.format("%s wins!", winnerName));
+                 alert.showAndWait();
                  Logger.info("{} wins!", winnerName);
 
                  board.setDisable(true);
