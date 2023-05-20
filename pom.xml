@@ -28,7 +28,7 @@
         <jacoco.version>0.8.9</jacoco.version>
         <jackson.version>2.15.0</jackson.version>
         <tinylog.version>2.6.1</tinylog.version>
-        <exec.mainClass><!-- TODO: the main class of your application that contains the main method --></exec.mainClass>
+        <exec.mainClass>boardgame.Main</exec.mainClass>
     </properties>
     <dependencies>
         <dependency>
