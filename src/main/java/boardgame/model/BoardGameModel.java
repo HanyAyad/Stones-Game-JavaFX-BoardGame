@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 public class BoardGameModel {
 
     private GameResults gameResult;
+    private GameResultsManager gameResultsManager;
     public static final int BOARD_SIZE = 3;
     public ReadOnlyObjectWrapper<Square>[][] board = new ReadOnlyObjectWrapper[BOARD_SIZE][BOARD_SIZE];
     private Player currentPlayer = Player.PLAYER1;
@@ -35,6 +36,7 @@ public class BoardGameModel {
             }
         }
         gameResult = new GameResults();
+        gameResultsManager = new GameResultsManager();
         gameResult.setGameStartTime(LocalDateTime.now().toString());
     }
 
@@ -147,8 +149,7 @@ public class BoardGameModel {
         return currentPlayer;
     }
 
-    public boolean isGameOver() {
-        return gameOver;
+    public boolean isGameOver() {return gameOver;
     }
 
     public Player getWinner() {
@@ -156,7 +157,7 @@ public class BoardGameModel {
     }
 
     public void resetGame(){
-        if (winner!=null){saveGameResult();}
+        if (winner!=null){ gameResultsManager.saveGameResult(gameResult);}
         currentPlayer=Player.PLAYER1;
         gameOver=false;
         winner=null;
@@ -176,47 +177,6 @@ public class BoardGameModel {
     public void setWinnerName(String winnerName) {
         this.winnerName = winnerName;
         gameResult.setWinnerName(winnerName);
-    }
-
-    private void saveGameResult() {
-        ObjectMapper mapper = new ObjectMapper();
-        File file = new File("game_results.json");
-
-        // Read existing game results from the file, if any
-        List<GameResults> gameResultsList = new ArrayList<>();
-        if (file.exists()) {
-            try {
-                gameResultsList = mapper.readValue(file, new TypeReference<List<GameResults>>() {});
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        // Add the current game result to the list
-        gameResultsList.add(gameResult);
-
-        // Write the updated list back to the file
-        try {
-            mapper.writeValue(file, gameResultsList);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Map<String, Long> getPlayerWins() {
-        ObjectMapper mapper = new ObjectMapper();
-        File file = new File("game_results.json");
-
-        List<GameResults> gameResultsList = new ArrayList<>();
-        if (file.exists()) {
-            try {
-                gameResultsList = mapper.readValue(file, new TypeReference<List<GameResults>>() {});
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return gameResultsList.stream().collect(Collectors.groupingBy(GameResults::getWinnerName, Collectors.counting()));
     }
 
 
