@@ -1,6 +1,7 @@
 package boardgame;
 
 import boardgame.model.BoardGameModel;
+import boardgame.model.GameResultsManager;
 import boardgame.model.Player;
 import boardgame.model.Square;
 import javafx.beans.binding.ObjectBinding;
@@ -29,6 +30,7 @@ public class BoardGameController {
 
 
     private BoardGameModel model = new BoardGameModel();
+    private GameResultsManager resultsManager;
     private boardgame.BoardGameApplication application;
 
     public int turn=0;
@@ -43,7 +45,7 @@ public class BoardGameController {
                 board.add(square, j, i);
             }
         }
-
+        resultsManager= new GameResultsManager();
 
     }
 
@@ -92,7 +94,7 @@ public class BoardGameController {
     }
 
     public void updateLeaderboard() {
-        Map<String, Long> playerWins = model.getPlayerWins();
+        Map<String, Long> playerWins = resultsManager.getPlayerWins();
         List<Map.Entry<String, Long>> sortedEntries = new ArrayList<>(playerWins.entrySet());
         sortedEntries.sort(Map.Entry.<String, Long>comparingByValue().reversed());
 
@@ -136,7 +138,6 @@ public class BoardGameController {
             model.setPlayerNames(BoardGameNamesController.player1Name,BoardGameNamesController.player2Name);
         }
         updateLeaderboard();
-
     }
 
     @FXML
@@ -149,6 +150,7 @@ public class BoardGameController {
         turn=0;
         model.resetGame();
         board.setDisable(false);
+        resultsManager= new GameResultsManager();
         updateLeaderboard();
         Logger.info("Game Reset!");
     }
