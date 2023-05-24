@@ -15,18 +15,18 @@ import java.util.stream.Collectors;
 
 public class BoardGameModel {
 
-    private GameResults gameResult;
-    private GameResultsManager gameResultsManager;
+    public GameResults gameResult;
+    public GameResultsManager gameResultsManager;
     public static final int BOARD_SIZE = 3;
     public ReadOnlyObjectWrapper<Square>[][] board = new ReadOnlyObjectWrapper[BOARD_SIZE][BOARD_SIZE];
-    private Player currentPlayer = Player.PLAYER1;
-    private boolean gameOver = false;
-    private Player winner = null;
+    public Player currentPlayer = Player.PLAYER1;
+    public boolean gameOver = false;
+    public Player winner = null;
 
-    private String player1Name;
-    private String player2Name;
+    public String player1Name;
+    public String player2Name;
 
-    private String winnerName;
+    public String winnerName;
 
 
     public BoardGameModel() {
