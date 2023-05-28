@@ -12,6 +12,7 @@ class BoardGameModelTest {
     @BeforeEach
     void setUp() {
         model = new BoardGameModel();
+        model.setPlayerNames("Player 1","Player 2");
     }
 
     @Test
@@ -118,7 +119,6 @@ class BoardGameModelTest {
 
     @Test
     void setPlayerNames() {
-        model.setPlayerNames("Player 1", "Player 2");
         assertEquals("Player 1", model.player1Name);
         assertEquals("Player 2", model.player2Name);
         assertEquals("Player 1", model.gameResult.getPlayer1Name());
