@@ -31,15 +31,43 @@ class BoardGameModelTest {
         assertEquals(expected, model.toString());
     }
 
+
     @Test
     void checkRow_noWinner() {
         assertFalse(model.checkRow(0));
+        assertFalse(model.checkRow(1));
+        assertFalse(model.checkRow(2));
+
     }
 
     @Test
-    void checkRow_winnerExists() {
+    void checkRow_winnerExists_RED() {
         model.move(0, 0);
         model.move(0, 1);
+        model.move(0, 2);
+        assertTrue(model.checkRow(0));
+    }
+    @Test
+    void checkRow_winnerExists_YELLOW() {
+        model.move(0, 0);
+        model.move(0, 0);
+        model.move(0, 1);
+        model.move(0, 1);
+        model.move(0, 2);
+        model.move(0, 2);
+        assertTrue(model.checkRow(0));
+    }
+
+    @Test
+    void checkRow_winnerExists_GREEN() {
+        model.move(0, 0);
+        model.move(0, 0);
+        model.move(0, 0);
+        model.move(0, 1);
+        model.move(0, 1);
+        model.move(0, 1);
+        model.move(0, 2);
+        model.move(0, 2);
         model.move(0, 2);
         assertTrue(model.checkRow(0));
     }
@@ -47,12 +75,38 @@ class BoardGameModelTest {
     @Test
     void checkColumn_noWinner() {
         assertFalse(model.checkColumn(0));
+        assertFalse(model.checkColumn(1));
+        assertFalse(model.checkColumn(2));
     }
 
     @Test
-    void checkColumn_winnerExists() {
+    void checkColumn_winnerExists_RED() {
         model.move(0, 0);
         model.move(1, 0);
+        model.move(2, 0);
+        assertTrue(model.checkColumn(0));
+    }
+    @Test
+    void checkColumn_winnerExists_YELLOW() {
+        model.move(0, 0);
+        model.move(0, 0);
+        model.move(1, 0);
+        model.move(1, 0);
+        model.move(2, 0);
+        model.move(2, 0);
+        assertTrue(model.checkColumn(0));
+    }
+
+    @Test
+    void checkColumn_winnerExists_GREEN() {
+        model.move(0, 0);
+        model.move(0, 0);
+        model.move(0, 0);
+        model.move(1, 0);
+        model.move(1, 0);
+        model.move(1, 0);
+        model.move(2, 0);
+        model.move(2, 0);
         model.move(2, 0);
         assertTrue(model.checkColumn(0));
     }
@@ -63,10 +117,17 @@ class BoardGameModelTest {
     }
 
     @Test
-    void checkDiagonal_winnerExists() {
+    void checkDiagonal_winnerExists_TopLeft_BottomRight() {
         model.move(0, 0);
         model.move(1, 1);
         model.move(2, 2);
+        assertTrue(model.checkDiagonal());
+    }
+    @Test
+    void checkDiagonal_winnerExists_TopRight_BottomLeft() {
+        model.move(0, 2);
+        model.move(1, 1);
+        model.move(2, 0);
         assertTrue(model.checkDiagonal());
     }
 
@@ -79,6 +140,8 @@ class BoardGameModelTest {
 
     @Test
     void isGameOver_gameNotOver() {
+        model.move(0,0);
+        model.move(0,1);
         assertFalse(model.isGameOver());
     }
 
@@ -96,13 +159,23 @@ class BoardGameModelTest {
     }
 
     @Test
-    void getWinner_winnerExists() {
+    void getWinner_winnerPlayer1() {
         model.move(0, 0);
         model.move(0, 1);
         model.move(0, 2);
         assertEquals(Player.PLAYER1, model.getWinner());
     }
 
+    @Test
+    void getWinner_winnerPlayer2() {
+        model.move(1, 0);
+        model.move(1, 0);
+        model.move(1, 1);
+        model.move(1, 1);
+        model.move(1, 2);
+        model.move(1, 2);
+        assertEquals(Player.PLAYER2, model.getWinner());
+    }
     @Test
     void resetGame() {
         model.move(0, 0);
