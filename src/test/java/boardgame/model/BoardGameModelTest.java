@@ -181,6 +181,7 @@ class BoardGameModelTest {
         model.move(0, 0);
         model.move(0, 1);
         model.move(0, 2);
+        model.setWinnerName("Player 1");
         model.resetGame();
         assertEquals(Player.PLAYER1, model.getCurrentPlayer());
         assertFalse(model.isGameOver());
