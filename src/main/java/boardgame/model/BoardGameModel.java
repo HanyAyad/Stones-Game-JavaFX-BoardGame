@@ -82,11 +82,9 @@ public class BoardGameModel {
 
 
     /**
-     * Method returns the read-only property of the specified square on the board.
-     *
      * @param i the row index
      * @param j the column index
-     * @return the read-only property of the square
+     * {@return the read-only property of the specified square on the board.}
      */
     public ReadOnlyObjectProperty<Square> squareProperty(int i, int j) {
 
@@ -96,11 +94,9 @@ public class BoardGameModel {
 
 
     /**
-     * Method returns the value of the specified square on the board.
-     *
      * @param i the row index
      * @param j the column index
-     * @return the value of the square
+     * {@return the value of the specified square on the board.}
      */
     public Square getSquare(int i, int j) {
 
@@ -173,9 +169,7 @@ public class BoardGameModel {
 
 
     /**
-     * Method returns a string representation of the board.
-     *
-     * @return a string representing the board
+     * {@return a string representation of the board.}
      */
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -204,10 +198,8 @@ public class BoardGameModel {
 
 
     /**
-     * Method checks if a row on the board has all the same non-empty squares.
-     *
      * @param row the row index
-     * @return true if the row has all the same non-empty squares, false otherwise
+     * {@return true if the row has all the same non-empty squares, false otherwise}
      */
     public boolean checkRow(int row) {
         Square firstSquare = getSquare(row, 0);
@@ -225,10 +217,8 @@ public class BoardGameModel {
 
 
     /**
-     * Method checks if a column on the board has all the same non-empty squares.
-     *
      * @param column the column index
-     * @return true if the column has all the same non-empty squares, false otherwise
+     *{@return true if the column has all the same non-empty squares, false otherwise}
      */
     public boolean checkColumn(int column) {
         Square firstSquare = getSquare(0, column);
@@ -246,9 +236,7 @@ public class BoardGameModel {
 
 
     /**
-     * Method checks if either of the two diagonals on the board has all the same non-empty squares.
-     *
-     * @return true if either diagonal has all the same non-empty squares, false otherwise
+     * {@return true if either diagonal has all the same non-empty squares, false otherwise}
      */
     public boolean checkDiagonal() {
         Square centerSquare = getSquare(1, 1);
@@ -269,9 +257,7 @@ public class BoardGameModel {
 
 
     /**
-     * Method returns the current player.
-     *
-     * @return the current player
+     * {@return the current player}
      */
     public Player getCurrentPlayer() {
 
@@ -281,9 +267,7 @@ public class BoardGameModel {
 
 
     /**
-     * Method checks if the game is over.
-     *
-     * @return true if the game is over, false otherwise
+     * {@return true if the game is over, false otherwise}
      */
     public boolean isGameOver() {
         return gameOver;
@@ -292,9 +276,7 @@ public class BoardGameModel {
 
 
     /**
-     * Method returns the winner of the game.
-     *
-     * @return the winner of the game
+     * {@return the winner of the game}
      */
     public Player getWinner() {
 

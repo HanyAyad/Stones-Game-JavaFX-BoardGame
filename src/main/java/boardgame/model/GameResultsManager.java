@@ -47,9 +47,7 @@ public class GameResultsManager {
 
     /**
      * Method retrieves the player wins from the game results.
-     * It returns a map where the keys are the winner names and the values are the corresponding counts of wins.
-     *
-     * @return a map of winner names and their win counts
+     * {@return a map where the keys are the winner names and the values are the corresponding counts of wins.}
      */
     public Map<String, Long> getPlayerWins() {
         return gameResultsList.stream()
