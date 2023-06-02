@@ -39,3 +39,11 @@ The objective of the game is to have three stones of the same color in a row, co
 - After the game ends, the leaderboard is updated with the Top 5 players based on their wins count.
 
 ![7](https://github.com/INBPA0420L/homework-project-HanyAyad/assets/52006612/5b67dc23-6f1c-45f2-ad53-1332b5074db2)
+
+
+## Project tech stack and workflow:
+- JavaFX SceneBuilder was used to build the Graphical User Interface.
+- The project was built using Maven buildtool, following Model-View-Controller (MVC) architectural pattern, and implementing all SOLID principles and clean code principles. Unit tests were made for the model classes using JUnit5.
+- Plugins like Maven Javadoc, Maven JXR, Maven Checkstyle, Maven Surefire Report, JaCoCo Maven were used to generate reports to be displayed on project site.
+- Jackson JSON processor was used to store game results in a json file to maintain a form of database.
+- Tinylog 2 framework was used to perform lightweight logging for the project.
