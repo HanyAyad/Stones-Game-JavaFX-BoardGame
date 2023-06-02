@@ -125,12 +125,7 @@ public class BoardGameModel {
                     }
             );
 
-            if(currentPlayer == Player.PLAYER1){
-                gameResult.setPlayer1Turns(gameResult.getPlayer1Turns()+1);
-            }
-            else{
-                gameResult.setPlayer2Turns(gameResult.getPlayer2Turns()+1);
-            }
+          gameResult.setTotalTurns(gameResult.getTotalTurns()+1);
             checkWinner();
             switchPlayers();}
 
@@ -297,8 +292,7 @@ public class BoardGameModel {
         gameOver=false;
         winner=null;
         gameResult.setWinnerName(null);
-        gameResult.setPlayer2Turns(0);
-        gameResult.setPlayer1Turns(0);
+        gameResult.setTotalTurns(0);
         gameResult.setGameStartTime(LocalDateTime.now().toString());
 
 
